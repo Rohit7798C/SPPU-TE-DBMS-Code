@@ -1,0 +1,35 @@
+SQL> create table calculates(radius number(5),area number(10,2),perimeter number(10,2));
+
+Table created.
+
+SQL> declare
+  2  radius number(5);
+  3  area number (10,2);
+  4  perimeter number(10,2);
+  5  pi constant number(3,2):=3.14;
+  6  begin
+  7  radius:=5;
+  8  while(radius<=10)
+  9  loop
+ 10  area:=pi*radius*radius;
+ 11  perimeter:=2*pi*radius;
+ 12  insert into calculates values(radius, area , perimeter);
+ 13  radius:=radius+1;
+ 14  end loop;
+ 15  end;
+ 16  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from calculates;
+
+    RADIUS       AREA  PERIMETER
+---------- ---------- ----------
+         5       78.5       31.4
+         6     113.04      37.68
+         7     153.86      43.96
+         8     200.96      50.24
+         9     254.34      56.52
+        10        314       62.8
+
+6 rows selected.
